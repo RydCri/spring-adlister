@@ -7,33 +7,44 @@ import java.util.Set;
 @Entity
 @Table(name="tags")
 public class Tag {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Ad> getAds() {
+        return ads;
+    }
+
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, length = 55)
     private String name;
 
-    @ManyToMany(mappedBy = "ads")
+    @ManyToMany(mappedBy = "tags")
     private Set<Ad> ads;
 
     public Tag() {
     }
-    public Tag(long id, String name) {
-        this.id = id;
+
+    public Tag(String name) {
         this.name = name;
     }
 
-
-    public String getTag_id() {
-        return name;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
