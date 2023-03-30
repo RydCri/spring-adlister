@@ -9,6 +9,14 @@
 <div th:each="ad : ${Modelads}">
 <h2><a th:text="${ad.title}" th:href="@{/ads/${ad.id}}"></a></h2>
   <h4><p th:text="${ad.description}"></p></h4>
+    <div th:if="${ad.tags.size()>0}">
+        <h3>Tags:</h3>
+        <p><span th:each="tag : ${ad.tags}">
+              <span th:if="${tagStat.index < ad.tags.size()-1}" th:text="${tag.name} + '  -  '"></span>
+              <span th:if="${tagStat.index == ad.tags.size()-1}" th:text="${tag.name}"></span>
+            </span>
+        </p>
+    </div>
 </div>
 </body>
 </html>
