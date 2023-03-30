@@ -3,6 +3,8 @@ package zenith.adlister_spring.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="Ads")
 public class Ad {
@@ -14,9 +16,33 @@ public class Ad {
     @Column(nullable = false)
     private String description;
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name= "ads_tags",
+            joinColumns = @JoinColumn(name = "ad_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<Tag> tags;
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public long getId() {
         return id;
