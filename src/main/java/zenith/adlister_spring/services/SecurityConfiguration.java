@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
+                .defaultSuccessUrl("/ads") // after login User is denied access to server endpoint?
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
