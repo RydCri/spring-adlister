@@ -33,4 +33,9 @@ public class UserController {
         userDao.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/profile")
+    public String userProfile(){
+        return "users/profile";
+    }
 }
