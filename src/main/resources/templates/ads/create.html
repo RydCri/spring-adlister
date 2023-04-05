@@ -6,6 +6,7 @@
     <title>Create Ad</title>
 </head>
 <body>
+
 <div sec:authorize="isAuthenticated()">
 <form th:method="post" th:action="@{/ads/create}">
   <input type="text" name="title" placeholder="title">
@@ -14,6 +15,7 @@
   <input type="submit">
 </form>
 </div>
+
 </body>
 </html>
 
