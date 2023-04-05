@@ -2,9 +2,7 @@ package zenith.adlister_spring.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import zenith.adlister_spring.models.Ad;
 import zenith.adlister_spring.models.Tag;
 import zenith.adlister_spring.models.Tags;
@@ -31,16 +29,15 @@ public class AdController {
     @GetMapping("/ads")
     public String adsIndex(Model model) {
         List<Ad> ads = adsDao.findAll();
-        System.out.println(ads);
         model.addAttribute("Modelads", ads);
         return "ads/index";
     }
-    @GetMapping("/ads/post")
+    @GetMapping("/ads/create")
     public String adsGetPost() {
         return "ads/create";
     }
 
-    @PostMapping("/ads/post")
+    @PostMapping("/ads/create")
     public String adsPost(@RequestParam String title, @RequestParam String description,@RequestParam(name="tags")String tags) {
         Set<Tag> tagset = Tags.makeTagSet(tags);
         Ad newAd = new Ad(title, description);
@@ -62,7 +59,12 @@ public class AdController {
 
         return "redirect:/ads";
     }
-
-
+@GetMapping("/ads/{n}")
+    public String thisAd(@PathVariable long n,Model model){
+        List<Ad> ads = adsDao.findAll();
+        model.addAttribute("modelID",n);
+        model.addAttribute("ads",ads);
+        return "ads/show";
+}
 
 }
