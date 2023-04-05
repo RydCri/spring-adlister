@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="ad : ${ads}">
+    <div th:if="${ad.id == modelID}">
+  <h2><a th:text="${ad.title}"></a></h2>
+  <h4><p th:text="${ad.description}"></p></h4>
+  <div th:if="${ad.tags.size()>0}">
+    <h3>Tags:</h3>
+    <p><span th:each="tag : ${ad.tags}">
+              <span th:if="${tagStat.index < ad.tags.size()-1}" th:text="${tag.name} + '  -  '"></span>
+              <span th:if="${tagStat.index == ad.tags.size()-1}" th:text="${tag.name}"></span>
+            </span>
+    </p>
+  </div>
+        <section style="display: flex;position: absolute;top: 30%;left: 50%;"><a href="/ads/1" style="color:white;text-decoration: none;font-size:2em;"> 1</a><a href="/ads/2" style="color:white;text-decoration: none;font-size:2em;"> 2</a><a href="/ads/3" style="color:white;text-decoration: none;font-size:2em;"> 3</a></section>
+</div>
+</div>
+
+</body>
+</html>
